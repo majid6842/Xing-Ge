@@ -20,6 +20,7 @@
       width: 60%;
       background: #f0fff0;
       box-shadow: 0 0 10px rgba(0,100,0,0.2);
+      overflow: hidden;
     }
     button {
       background: #228B22;
@@ -31,6 +32,16 @@
       cursor: pointer;
     }
     button:hover { background: #006400; }
+    #themeToggle {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    #stickerGif {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
     #easterEgg {
       display: none;
       margin-top: 20px;
@@ -67,9 +78,14 @@
   </div>
 
   <div class="card">
-    <h2>Cartoon Fun</h2>
-    <p>Here’s a random GIF to make you smile:</p>
-    <img id="cartoonGif" src="" width="300" alt="Cartoon GIF">
+    <h2>Sticker Fun</h2>
+    <p>Choose a theme and enjoy a surprise GIF:</p>
+    <select id="themeToggle" onchange="loadSticker()">
+      <option value="cartoon">Cartoon</option>
+      <option value="magic">Magic</option>
+      <option value="comedy">Comedy</option>
+    </select>
+    <img id="stickerGif" src="" alt="Sticker GIF">
   </div>
 
   <div class="card">
@@ -89,12 +105,23 @@
       "There is only one truth.",
       "A detective who corners a culprit should never let them escape."
     ];
+
     const cartoonGifs = [
-      "https://media.giphy.com/media/3o6ZsYz7bZ6s9xZzU8/giphy.gif", // Tom & Jerry
-      "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", // Bugs Bunny
-      "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif", // Tweety Bird
-      "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif", // Daffy Duck
-      "https://media.giphy.com/media/3o6ZsYz7bZ6s9xZzU8/giphy.gif"  // Tom & Jerry repeat
+      "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
+      "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif",
+      "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
+    ];
+
+    const magicGifs = [
+      "https://media.giphy.com/media/xT9IgIc0lryrxvqVGM/giphy.gif",
+      "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
+      "https://media.giphy.com/media/3o6ZsYz7bZ6s9xZzU8/giphy.gif"
+    ];
+
+    const comedyGifs = [
+      "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+      "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
+      "https://media.giphy.com/media/3o6Zt8MgUuvSbkZYWc/giphy.gif"
     ];
 
     let clickCount = 0;
@@ -122,11 +149,16 @@
       document.getElementById("bgMusic").pause();
     }
 
-    // Random cartoon GIF on page load
-    window.onload = function() {
-      const gif = cartoonGifs[Math.floor(Math.random() * cartoonGifs.length)];
-      document.getElementById("cartoonGif").src = gif;
-    };
+    function loadSticker() {
+      const theme = document.getElementById("themeToggle").value;
+      let gifs = cartoonGifs;
+      if (theme === "magic") gifs = magicGifs;
+      else if (theme === "comedy") gifs = comedyGifs;
+      const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+      document.getElementById("stickerGif").src = randomGif;
+    }
+
+    window.onload = loadSticker;
   </script>
 </body>
 </html>
