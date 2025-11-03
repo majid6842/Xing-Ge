@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Portal for Rui</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #006400;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 { color: #228B22; }
+    .card {
+      border: 2px solid #228B22;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 60%;
+      background: #f0fff0;
+      box-shadow: 0 0 10px rgba(0,100,0,0.2);
+    }
+    button {
+      background: #228B22;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover { background: #006400; }
+    #easterEgg {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌿 Welcome, Rui! 🌿</h1>
+  <p style="font-size:18px; color:#228B22;">
+    You’ve been working so hard—this little portal is here to warm you up, make you smile, and remind you to take a breath. 💚
+  </p>
+
+  <!-- Background music -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="card">
+    <h2>Background Music</h2>
+    <button onclick="playMusic()">▶ Play</button>
+    <button onclick="pauseMusic()">⏸ Pause</button>
+  </div>
+
+  <div class="card">
+    <h2>Harry Potter Spell of the Day</h2>
+    <p id="spell">Click below to reveal!</p>
+    <button onclick="showSpell()">Reveal Spell</button>
+  </div>
+
+  <div class="card">
+    <h2>Conan Quote</h2>
+    <p id="conan">Click below to reveal!</p>
+    <button onclick="showConan()">Reveal Quote</button>
+  </div>
+
+  <div class="card">
+    <h2>Tom & Jerry Fun</h2>
+    <p>Here’s a random GIF to make you smile:</p>
+    <img src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif" width="300">
+  </div>
+
+  <div class="card">
+    <h2>Secret Button</h2>
+    <p>Click this button 5 times for a surprise...</p>
+    <button onclick="countClicks()">Click Me</button>
+    <div id="easterEgg">
+      <h3>Flynn Rider’s Smolder 😏</h3>
+      <img src="https://media.giphy.com/media/3o7TKr5y8C2qJQYjEA/giphy.gif" width="250">
+    </div>
+  </div>
+
+  <script>
+    const spells = ["Expelliarmus!", "Lumos!", "Accio!", "Expecto Patronum!"];
+    const conanQuotes = [
+      "One truth prevails!",
+      "There is only one truth.",
+      "A detective who corners a culprit should never let them escape."
+    ];
+    let clickCount = 0;
+
+    function showSpell() {
+      document.getElementById("spell").innerText = spells[Math.floor(Math.random()*spells.length)];
+    }
+    function showConan() {
+      document.getElementById("conan").innerText = conanQuotes[Math.floor(Math.random()*conanQuotes.length)];
+    }
+    function countClicks() {
+      clickCount++;
+      if (clickCount >= 5) {
+        document.getElementById("easterEgg").style.display = "block";
+      }
+    }
+
+    // Music controls
+    const music = document.getElementById("bgMusic");
+    function playMusic() { music.play(); }
+    function pauseMusic() { music.pause(); }
+  </script>
+</body>
+</html>
