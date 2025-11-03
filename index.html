@@ -67,9 +67,9 @@
   </div>
 
   <div class="card">
-    <h2>Tom & Jerry Fun</h2>
+    <h2>Cartoon Fun</h2>
     <p>Here’s a random GIF to make you smile:</p>
-    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="300" alt="Tom and Jerry GIF">
+    <img id="cartoonGif" src="" width="300" alt="Cartoon GIF">
   </div>
 
   <div class="card">
@@ -89,14 +89,24 @@
       "There is only one truth.",
       "A detective who corners a culprit should never let them escape."
     ];
+    const cartoonGifs = [
+      "https://media.giphy.com/media/3o6ZsYz7bZ6s9xZzU8/giphy.gif", // Tom & Jerry
+      "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", // Bugs Bunny
+      "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif", // Tweety Bird
+      "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif", // Daffy Duck
+      "https://media.giphy.com/media/3o6ZsYz7bZ6s9xZzU8/giphy.gif"  // Tom & Jerry repeat
+    ];
+
     let clickCount = 0;
 
     function showSpell() {
       document.getElementById("spell").innerText = spells[Math.floor(Math.random()*spells.length)];
     }
+
     function showConan() {
       document.getElementById("conan").innerText = conanQuotes[Math.floor(Math.random()*conanQuotes.length)];
     }
+
     function countClicks() {
       clickCount++;
       if (clickCount >= 5) {
@@ -104,10 +114,19 @@
       }
     }
 
-    // Music controls
-    const music = document.getElementById("bgMusic");
-    function playMusic() { music.play(); }
-    function pauseMusic() { music.pause(); }
+    function playMusic() {
+      document.getElementById("bgMusic").play();
+    }
+
+    function pauseMusic() {
+      document.getElementById("bgMusic").pause();
+    }
+
+    // Random cartoon GIF on page load
+    window.onload = function() {
+      const gif = cartoonGifs[Math.floor(Math.random() * cartoonGifs.length)];
+      document.getElementById("cartoonGif").src = gif;
+    };
   </script>
 </body>
 </html>
